@@ -1,0 +1,9 @@
+AnimationPlayer
+Camera3D
+CollisionShape3D
+MeshInstance3D
+CharacterBody3D
+Node
+CSGBox3D
+Node3D
+WorldEnvironment
