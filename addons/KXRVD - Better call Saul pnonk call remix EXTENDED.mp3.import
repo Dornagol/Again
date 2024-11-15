@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1x32o0i7jj43"
+path="res://.godot/imported/KXRVD - Better call Saul pnonk call remix EXTENDED.mp3-b5ff9fa4e78425cfbb9a155551e4c5c1.mp3str"
+
+[deps]
+
+source_file="res://addons/KXRVD - Better call Saul pnonk call remix EXTENDED.mp3"
+dest_files=["res://.godot/imported/KXRVD - Better call Saul pnonk call remix EXTENDED.mp3-b5ff9fa4e78425cfbb9a155551e4c5c1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

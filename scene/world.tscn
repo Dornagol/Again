@@ -1,0 +1,151 @@
+[gd_scene load_steps=13 format=3 uid="uid://cpo0sihpx757v"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_twlp7"]
+[ext_resource type="PackedScene" uid="uid://cnow57yc48tws" path="res://scene/environnement.tscn" id="2_jom1h"]
+[ext_resource type="Texture2D" uid="uid://8qq5bpefqfxy" path="res://addons/kenney_particle_pack/circle_05.png" id="3_wkmi2"]
+[ext_resource type="Texture2D" uid="uid://brrxao4jvlyjk" path="res://image/backmenu.jpg" id="4_dwn5a"]
+[ext_resource type="AudioStream" uid="uid://dhklng5rpxmnv" path="res://audio/ingame.mp3" id="5_1ds6p"]
+[ext_resource type="Texture2D" uid="uid://d3385ipdaj5mh" path="res://model/player/svg.svg" id="5_46oxh"]
+[ext_resource type="AudioStream" uid="uid://cq7s5wetx65n2" path="res://audio/menumusic.mp3" id="6_52rks"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_opcc0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_sv6q6"]
+sky_material = SubResource("ProceduralSkyMaterial_opcc0")
+
+[sub_resource type="Environment" id="Environment_t6maj"]
+background_mode = 2
+sky = SubResource("Sky_sv6q6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhhux"]
+bg_color = Color(0.79337, 0, 0.0618179, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4m7by"]
+bg_color = Color(0, 0.727215, 0.125211, 1)
+
+[node name="World" type="Node"]
+script = ExtResource("1_twlp7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t6maj")
+
+[node name="Environnement" parent="." instance=ExtResource("2_jom1h")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 418.0
+offset_top = 226.0
+offset_right = -418.0
+offset_bottom = -226.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address to join Here"
+alignment = 1
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("3_wkmi2")
+stretch_mode = 5
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 416.0
+offset_top = 72.0
+offset_right = -416.0
+offset_bottom = -549.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_vhhux")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4m7by")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_dwn5a")
+expand_mode = 1
+
+[node name="Svg" type="Sprite2D" parent="CanvasLayer/background"]
+position = Vector2(574.5, 333.5)
+scale = Vector2(1.43875, 0.845)
+texture = ExtResource("5_46oxh")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="IngameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1ds6p")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_52rks")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

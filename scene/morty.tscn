@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmeeajvleu24m"]
+
+[ext_resource type="PackedScene" uid="uid://b6fqdm3qdetmp" path="res://model/player/untitled.glb" id="1_qaabm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i7y6y"]
+
+[node name="Morty" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00771213, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07057, 0)
+shape = SubResource("CapsuleShape3D_i7y6y")
+
+[node name="untitled" parent="." instance=ExtResource("1_qaabm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0103525, 0)

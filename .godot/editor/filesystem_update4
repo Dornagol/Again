@@ -1,4 +1,2 @@
-res://Player.gd
-res://world.tscn
-res://player.tscn
-res://world.gd
+res://scene/world.tscn
+res://scene/player.tscn
